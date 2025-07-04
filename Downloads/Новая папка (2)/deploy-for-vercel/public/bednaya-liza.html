@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ "Бедная Лиза" - Н.М. Карамзин</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #e74c3c;
+            --accent: #9b59b6;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            --header-gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            --card-bg: white;
+            --section-bg: white;
+            --footer-bg: white;
+            --text-color: #2c3e50;
+            --text-muted: #7f8c8d;
+        }
+
+        .dark-mode {
+            --primary: #3498db;
+            --secondary: #e74c3c;
+            --accent: #9b59b6;
+            --light: #121212;
+            --dark: #ecf0f1;
+            --text: #ecf0f1;
+            --text-light: #bdc3c7;
+            --bg-gradient: linear-gradient(135deg, #2c3e50 0%, #1a242f 100%);
+            --header-gradient: linear-gradient(135deg, #2c3e50 0%, #1a242f 100%);
+            --card-bg: #2d3436;
+            --section-bg: #2d3436;
+            --footer-bg: #1e272e;
+            --text-color: #ecf0f1;
+            --text-muted: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .header-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--header-gradient);
+            opacity: 0.95;
+            z-index: -1;
+            border-radius: 0 0 50% 50% / 0 0 30% 30%;
+            transform: scaleX(1.2);
+        }
+        
+        .header-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .creator {
+            background: white;
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .dark-mode .creator {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: white;
+            margin: 15px 0 10px;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            padding: 0 20px;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+        
+        .source-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .source-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.1rem;
+        }
+        
+        .source-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .source-btn i {
+            font-size: 1.3rem;
+        }
+        
+        .toc-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .toc-card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 5px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .dark-mode .toc-card {
+            background: #2d3748;
+        }
+        
+        .toc-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-left-color: var(--secondary);
+        }
+        
+        .toc-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            width: 60px;
+            height: 60px;
+            background: rgba(155, 89, 182, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toc-card:hover .toc-icon {
+            color: var(--secondary);
+            background: rgba(231, 76, 60, 0.1);
+            transform: rotate(5deg);
+        }
+        
+        .toc-content h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-size: 1.3rem;
+        }
+        
+        .toc-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        section {
+            background: var(--section-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .section-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .section-header h2 i {
+            color: var(--accent);
+            background: rgba(155, 89, 182, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-card {
+            display: flex;
+            gap: 40px;
+            margin: 30px 0;
+            align-items: center;
+        }
+        
+        .hero-img {
+            flex: 1;
+            max-width: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+            position: relative;
+        }
+        
+        .hero-img::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+        
+        .hero-img-placeholder {
+            color: white;
+            text-align: center;
+            padding: 30px;
+            z-index: 2;
+        }
+        
+        .hero-img-placeholder i {
+            font-size: 6rem;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-img-placeholder h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .hero-info {
+            flex: 2;
+        }
+        
+        .hero-info h3 {
+            font-size: 1.9rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 5px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-top-color: var(--secondary);
+        }
+        
+        .stat-card i {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover i {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 2.8rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover h3 {
+            color: var(--secondary);
+        }
+        
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        
+        .character-evolution {
+            display: flex;
+            flex-direction: column;
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 45px;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--secondary));
+            z-index: 1;
+            border-radius: 2px;
+        }
+        
+        .evolution-stage {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+            align-items: flex-start;
+            z-index: 2;
+        }
+        
+        .evolution-stage:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-badge {
+            width: 90px;
+            height: 90px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-right: 30px;
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .evolution-stage:hover .evolution-badge {
+            background: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+        }
+        
+        .evolution-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            flex: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            border-left: 4px solid var(--accent);
+            transition: all 0.4s ease;
+        }
+        
+        .dark-mode .evolution-content {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .evolution-stage:hover .evolution-content {
+            border-left-color: var(--secondary);
+            transform: translateX(10px);
+        }
+        
+        .evolution-content h4 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .evolution-content h4 i {
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        .chart-container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            height: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .dark-mode .chart-container {
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #8e44ad 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .quote-section::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        
+        .quote-section blockquote {
+            font-size: 2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+        
+        .quote-section footer {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            opacity: 0.9;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .symbol-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .dark-mode .symbol-card {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .symbol-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        .symbol-icon {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .symbol-icon::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .symbol-card:hover .symbol-icon {
+            background: linear-gradient(135deg, var(--secondary) 0%, #e74c3c 100%);
+        }
+        
+        .symbol-content {
+            padding: 30px;
+        }
+        
+        .symbol-content h3 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .symbol-content h3 i {
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conclusion-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+        
+        .conclusion-box h3 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .conclusion-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .conclusion-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid var(--secondary);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        
+        .conclusion-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .conclusion-item h4 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .conclusion-item h4 i {
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+        
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .extra-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--accent);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark-mode .extra-card {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .extra-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent);
+        }
+        
+        .extra-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-top-color: var(--secondary);
+        }
+        
+        .extra-card h3 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .extra-card h3 i {
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+        
+        .questions-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .dark-mode .questions-container {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .questions-container h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 40px;
+        }
+        
+        .question-list {
+            counter-reset: question;
+        }
+        
+        .question-item {
+            margin-bottom: 30px;
+            padding: 25px 25px 25px 85px;
+            background: var(--light);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-mode .question-item {
+            background: #2d3748;
+        }
+        
+        .question-item:hover {
+            background: rgba(155, 89, 182, 0.05);
+            transform: translateX(10px);
+        }
+        
+        .dark-mode .question-item:hover {
+            background: rgba(155, 89, 182, 0.15);
+        }
+        
+        .question-item::before {
+            counter-increment: question;
+            content: counter(question);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 30px;
+            background: var(--footer-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .dark-mode footer {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .note {
+            background: rgba(231, 76, 60, 0.1);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border-left: 5px solid var(--secondary);
+            color: var(--text-color);
+        }
+        
+        .dark-mode .note {
+            background: rgba(231, 76, 60, 0.2);
+        }
+        
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 30px 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.4);
+            gap: 10px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(231, 76, 60, 0.5);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .character-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .character-item {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .character-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .character-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .character-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .character-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 50px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--accent);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -12px;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -8px;
+        }
+        
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .character-quotes {
+            background: rgba(155, 89, 182, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .dark-mode .character-quotes {
+            background: rgba(155, 89, 182, 0.2);
+        }
+        
+        @media (max-width: 992px) {
+            .hero-card {
+                flex-direction: column;
+            }
+            
+            .hero-img {
+                max-width: 100%;
+            }
+            
+            .character-evolution {
+                margin: 30px 0;
+            }
+            
+            .evolution-stage {
+                margin-bottom: 40px;
+            }
+            
+            .timeline-line {
+                left: 45px;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.9rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0 !important;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 30px 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .evolution-badge {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+                margin-right: 20px;
+            }
+            
+            .evolution-content {
+                padding: 20px;
+            }
+            
+            .evolution-content h4 {
+                font-size: 1.5rem;
+            }
+            
+            .quote-section {
+                padding: 30px 20px;
+            }
+            
+            .quote-section blockquote {
+                font-size: 1.6rem;
+            }
+            
+            .chart-container {
+                height: 350px;
+                padding: 15px;
+            }
+            
+            .creator {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .header-controls {
+                position: static;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .source-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .source-btn {
+                width: 85%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .toc-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .evolution-stage {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .evolution-badge {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .evolution-content {
+                text-align: center;
+            }
+            
+            .timeline-line {
+                display: none;
+            }
+            
+            .symbol-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .back-to-top {
+                padding: 12px 20px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        .back-to-menu {
+            display: inline-block;
+            margin: 18px 0 24px 0;
+            padding: 10px 22px;
+            background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1.08rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 2px 8px #1976d211;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .back-to-menu:hover {
+            background: linear-gradient(90deg, #1565c0 0%, #64b5f6 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-menu">← Назад в главное меню</a>
+    <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="container">
+        <header>
+            <div class="header-gradient"></div>
+            <div class="creator">Создатель: Денис Аниськов</div>
+            <div class="header-controls">
+                <button class="control-btn" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="fontIncrease">
+                    <i class="fas fa-text-height"></i>
+                </button>
+                <button class="control-btn" id="fontDecrease">
+                    <i class="fas fa-text-width"></i>
+                </button>
+            </div>
+            <h1>«Бедная Лиза» — Н.М. Карамзин</h1>
+            <p class="subtitle">Сентиментальный анализ повести с визуализацией</p>
+            
+            <div class="source-links">
+                <a href="https://ilibrary.ru/text/1087/p.1/index.html" class="source-btn" target="_blank">
+                    <i class="fas fa-book-open"></i> Оригинал произведения
+                </a>
+                <a href="https://obrazovaka.ru/books/karamzin/bednaya-liza" class="source-btn" target="_blank">
+                    <i class="fas fa-book"></i> Краткое содержание
+                </a>
+            </div>
+            
+            <div class="author">
+                <i class="fas fa-user-edit"></i>
+                <span>Литературный анализ подготовлен: 5 июля 2025 г.</span>
+            </div>
+        </header>
+        
+        <div class="toc-container">
+            <div class="section-header">
+                <h2><i class="fas fa-bookmark"></i> Навигация по анализу</h2>
+            </div>
+            <div class="toc-grid">
+                <a href="#history" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>История создания</h3>
+                        <p>Контекст написания, публикация, значение</p>
+                    </div>
+                </a>
+                
+                <a href="#characters" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Персонажи</h3>
+                        <p>Характеристики главных героев</p>
+                    </div>
+                </a>
+                
+                <a href="#plot" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Сюжет и композиция</h3>
+                        <p>Анализ структуры повести</p>
+                    </div>
+                </a>
+                
+                <a href="#themes" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Темы и идеи</h3>
+                        <p>Основные мотивы и проблемы</p>
+                    </div>
+                </a>
+                
+                <a href="#nature" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Роль природы</h3>
+                        <p>Пейзаж как отражение чувств</p>
+                    </div>
+                </a>
+                
+                <a href="#legacy" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Значение повести</h3>
+                        <p>Влияние на литературу и культуру</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <section id="history">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> История создания</h2>
+            </div>
+            
+            <div class="hero-card">
+                <div class="hero-img">
+                    <div class="hero-img-placeholder">
+                        <i class="fas fa-feather-alt"></i>
+                        <h3>Н.М. Карамзин</h3>
+                        <p>1766-1826</p>
+                    </div>
+                </div>
+                <div class="hero-info">
+                    <h3>Создание повести</h3>
+                    <p>"Бедная Лиза" была опубликована в 1792 году в "Московском журнале". Эта повесть стала одним из первых произведений русского сентиментализма. По легенде, Карамзин создал повесть под впечатлением от истории, услышанной во время прогулок в окрестностях Симонова монастыря.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-calendar"></i>
+                            <h3>1792</h3>
+                            <p>Год публикации</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-book"></i>
+                            <h3>1</h3>
+                            <p>Повесть</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-pen-fancy"></i>
+                            <h3>Сентиментализм</h3>
+                            <p>Литературное направление</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-user"></i>
+                            <h3>3</h3>
+                            <p>Главных персонажа</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-timeline"></i> Хронология создания</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1789-1790</div>
+                        <p>Карамзин путешествует по Европе, где знакомится с идеями сентиментализма и творчеством Руссо, Ричардсона, Стерна</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1791</div>
+                        <p>Начало работы над "Московским журналом", где планируется публикация "Бедной Лизы"</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1792</div>
+                        <p>Публикация повести в "Московском журнале". Огромный успех у читателей. Появление первых паломников к "Лизиному пруду"</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1796</div>
+                        <p>"Бедная Лиза" выходит отдельным изданием. Повесть становится образцом сентиментальной прозы</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">XIX век</div>
+                        <p>Повесть многократно переиздается, становится обязательной частью литературного образования</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="characters">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Персонажи повести</h2>
+            </div>
+            
+            <div class="character-list">
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Лиза</h4>
+                    <p>Крестьянская девушка, добрая, наивная, трудолюбивая. Влюбляется в Эраста и кончает жизнь самоубийством после его предательства</p>
+                </div>
+                
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h4>Эраст</h4>
+                    <p>Молодой дворянин, богатый, легкомысленный. Влюбляется в Лизу, но не выдерживает испытания чувствами</p>
+                </div>
+                
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h4>Мать Лизы</h4>
+                    <p>Добрая старушка, живущая воспоминаниями о муже. Умирает после известия о гибели дочери</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="charactersChart"></canvas>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-comments"></i> Речевые характеристики</h2>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-user"></i> Лиза</h3>
+                        <p>Речь простая, искренняя, эмоциональная: "Ах, Эраст! Обещай мне...". Часто использует уменьшительно-ласкательные формы</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-user"></i> Эраст</h3>
+                        <p>Речь изысканная, книжная, сентиментальная: "Природа призывает меня в свои объятия". Но становится прагматичной после разочарования</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-user"></i> Мать Лизы</h3>
+                        <p>Речь простая, народная, с пословицами и поговорками: "Бог милостив; лишь бы муж-то добрый попался"</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-user"></i> Рассказчик</h3>
+                        <p>Речь эмоциональная, сентиментальная, с восклицаниями и обращениями к читателю: "Ах! Я люблю те предметы, которые трогают мое сердце!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="quote-section">
+            <blockquote>
+                "И крестьянки любить умеют!"
+            </blockquote>
+            <footer>— Н.М. Карамзин, «Бедная Лиза»</footer>
+        </div>
+        
+        <section id="plot">
+            <div class="section-header">
+                <h2><i class="fas fa-book"></i> Сюжет и композиция</h2>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="structureChart"></canvas>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-tasks"></i> Композиция повести</h2>
+            </div>
+            
+            <div class="character-evolution">
+                <div class="timeline-line"></div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-star"></i> Экспозиция</h4>
+                        <p>Описание окрестностей Москвы и Симонова монастыря. Знакомство с Лизой и ее матерью. Идиллическая картина их жизни</p>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-star"></i> Завязка</h4>
+                        <p>Встреча Лизы и Эраста. Начало их романтических отношений. Объяснение в любви</p>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-star"></i> Развитие действия</h4>
+                        <p>Тайные встречи влюбленных. Потеря невинности Лизой. Отъезд Эраста на войну</p>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-money-bill"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-star"></i> Кульминация</h4>
+                        <p>Неожиданная встреча Лизы и Эраста в Москве. Эраст объясняет, что женится на другой и дает Лизе денег</p>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-star"></i> Развязка</h4>
+                        <p>Самоубийство Лизы. Смерть ее матери. Раскаяние Эраста</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="themes">
+            <div class="section-header">
+                <h2><i class="fas fa-palette"></i> Темы и идеи</h2>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="themesChart"></canvas>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-search"></i> Основные проблемы</h2>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-heart-broken"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Любовь и предательство</h3>
+                        <p>Чистая любовь Лизы противопоставлена легкомыслию Эраста. Карамзин показывает, как социальные барьеры разрушают чувства</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Социальное неравенство</h3>
+                        <p>Конфликт между естественным чувством и социальными условностями. Крестьянка и дворянин не могут быть вместе в обществе того времени</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Город vs деревня</h3>
+                        <p>Москва как символ развращенности, деревня - чистоты и естественности. Эраст теряет моральные ориентиры в городе</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Смерть и искупление</h3>
+                        <p>Самоубийство Лизы как трагический протест. Раскаяние Эраста, который считает себя убийцей</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="nature">
+            <div class="section-header">
+                <h2><i class="fas fa-tree"></i> Роль природы</h2>
+            </div>
+            
+            <div class="hero-card">
+                <div class="hero-img">
+                    <div class="hero-img-placeholder">
+                        <i class="fas fa-water"></i>
+                        <h3>Лизин пруд</h3>
+                        <p>Место трагедии</p>
+                    </div>
+                </div>
+                <div class="hero-info">
+                    <h3>Пейзаж как отражение чувств</h3>
+                    <p>Карамзин мастерски использует природу для передачи эмоционального состояния героев. Идиллические пейзажи в начале повести соответствуют светлым чувствам Лизы. По мере развития трагедии природа становится мрачной и угрожающей.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-cloud-sun"></i>
+                            <h3>15</h3>
+                            <p>Описаний природы</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-water"></i>
+                            <h3>7</h3>
+                            <p>Упоминаний пруда</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-moon"></i>
+                            <h3>5</h3>
+                            <p>Описаний ночи</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-wind"></i>
+                            <h3>3</h3>
+                            <p>Грозы и бури</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-leaf"></i> Символика природы</h2>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Утренняя заря</h3>
+                        <p>Символ начала любви, чистоты и надежды. Лиза встречает Эраста на заре</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-cloud-moon"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Лунная ночь</h3>
+                        <p>Символ тайных встреч, любви и одновременно предчувствия беды</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Пруд</h3>
+                        <p>Символ роковой судьбы. Место гибели Лизы становится местом памяти и покаяния</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Гроза</h3>
+                        <p>Символ надвигающейся катастрофы. Предвещает разлуку и трагедию</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="legacy">
+            <div class="section-header">
+                <h2><i class="fas fa-lightbulb"></i> Значение повести</h2>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="legacyChart"></canvas>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-globe"></i> Влияние на культуру</h2>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> В литературе</h3>
+                        <p>"Бедная Лиза" положила начало русскому сентиментализму. Повлияла на творчество Жуковского, Пушкина, Тургенева</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> В театре и кино</h3>
+                        <p>Многочисленные театральные постановки. Экранизации 1967, 1978 и 2000 годов</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> В живописи</h3>
+                        <p>Иллюстрации к повести создавали Орест Кипренский, Владимир Боровиковский, Константин Трутовский</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> В топонимике</h3>
+                        <p>"Лизин пруд" у Симонова монастыря стал местом паломничества. Упоминается в путеводителях XIX века</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="questions-container">
+                <h3>Вопросы для анализа</h3>
+                <div class="question-list">
+                    <div class="question-item">
+                        Почему повесть называется "Бедная Лиза"? В чем многозначность этого эпитета?
+                    </div>
+                    
+                    <div class="question-item">
+                        Какова роль рассказчика в повести? Как его присутствие влияет на восприятие событий?
+                    </div>
+                    
+                    <div class="question-item">
+                        В чем состоит новаторство Карамзина в изображении крестьянки?
+                    </div>
+                    
+                    <div class="question-item">
+                        Можно ли считать Эраста отрицательным героем? Как Карамзин объясняет его поступки?
+                    </div>
+                    
+                    <div class="question-item">
+                        Какую роль играет пейзаж в повести? Приведите примеры психологического параллелизма.
+                    </div>
+                    
+                    <div class="question-item">
+                        Почему повесть имела такой огромный успех у современников Карамзина?
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="note">
+            <p><strong><i class="fas fa-exclamation-circle"></i> Примечание:</strong> Данный интерактивный анализ создан для образовательных целей и демонстрирует современный подход к литературному анализу. Все графики и диаграммы сгенерированы с помощью JavaScript. Для корректного отображения необходим современный браузер. Обновлено: 5 июля 2025 г.</p>
+        </div>
+        
+        <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i> Вернуться наверх</a>
+        
+        <footer>
+            <p>© 2025 Литературный анализ «Бедная Лиза» | Для образовательных целей</p>
+            <p>Создатель: Денис Аниськов | Использованные технологии: HTML5, CSS3, JavaScript, Chart.js</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Инициализация графиков
+        function initCharts() {
+            // График персонажей
+            const charactersCtx = document.getElementById('charactersChart').getContext('2d');
+            const charactersChart = new Chart(charactersCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Лиза', 'Эраст', 'Мать Лизы', 'Рассказчик'],
+                    datasets: [{
+                        data: [45, 35, 10, 10],
+                        backgroundColor: [
+                            'rgba(231, 76, 60, 0.8)',
+                            'rgba(52, 152, 219, 0.8)',
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(155, 89, 182, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(231, 76, 60)',
+                            'rgb(52, 152, 219)',
+                            'rgb(46, 204, 113)',
+                            'rgb(155, 89, 182)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Значимость персонажей в повести (%)',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 2000
+                    }
+                }
+            });
+
+            // График структуры
+            const structureCtx = document.getElementById('structureChart').getContext('2d');
+            const structureChart = new Chart(structureCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Экспозиция', 'Завязка', 'Развитие', 'Кульминация', 'Развязка'],
+                    datasets: [{
+                        label: 'Эмоциональное напряжение',
+                        data: [20, 70, 85, 100, 95],
+                        borderColor: '#9b59b6',
+                        backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                        borderWidth: 4,
+                        pointRadius: 8,
+                        pointBackgroundColor: '#9b59b6',
+                        pointBorderColor: '#fff',
+                        pointHoverRadius: 10,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Развитие сюжета и эмоционального напряжения',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Уровень напряжения',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Элементы композиции',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+
+            // График тем
+            const themesCtx = document.getElementById('themesChart').getContext('2d');
+            const themesChart = new Chart(themesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Любовь и предательство', 'Социальное неравенство', 'Город vs деревня', 'Смерть и искупление', 'Роль природы'],
+                    datasets: [{
+                        data: [40, 25, 15, 10, 10],
+                        backgroundColor: [
+                            'rgba(231, 76, 60, 0.8)',
+                            'rgba(52, 152, 219, 0.8)',
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(155, 89, 182, 0.8)',
+                            'rgba(241, 196, 15, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(231, 76, 60)',
+                            'rgb(52, 152, 219)',
+                            'rgb(46, 204, 113)',
+                            'rgb(155, 89, 182)',
+                            'rgb(241, 196, 15)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Распределение основных тем',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 2000
+                    }
+                }
+            });
+
+            // График наследия
+            const legacyCtx = document.getElementById('legacyChart').getContext('2d');
+            const legacyChart = new Chart(legacyCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Литературное значение', 'Культурное влияние', 'Образовательная роль', 'Актуальность', 'Художественные достоинства'],
+                    datasets: [
+                        {
+                            label: 'Значение повести',
+                            data: [95, 85, 90, 80, 90],
+                            fill: true,
+                            backgroundColor: 'rgba(155, 89, 182, 0.2)',
+                            borderColor: 'rgb(155, 89, 182)',
+                            pointBackgroundColor: 'rgb(155, 89, 182)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(155, 89, 182)',
+                            pointRadius: 5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Значение повести в культуре',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        // Переключение темы
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Проверка сохраненной темы
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.className = 'fas fa-sun';
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Управление размером шрифта
+        const fontIncrease = document.getElementById('fontIncrease');
+        const fontDecrease = document.getElementById('fontDecrease');
+        const html = document.documentElement;
+        
+        function changeFontSize(direction) {
+            const currentSize = parseFloat(getComputedStyle(html).fontSize);
+            const newSize = direction === 'increase' ? currentSize * 1.1 : currentSize * 0.9;
+            html.style.fontSize = `${newSize}px`;
+            localStorage.setItem('fontSize', newSize);
+        }
+        
+        // Проверка сохраненного размера шрифта
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            html.style.fontSize = `${savedFontSize}px`;
+        }
+        
+        fontIncrease.addEventListener('click', () => changeFontSize('increase'));
+        fontDecrease.addEventListener('click', () => changeFontSize('decrease'));
+        
+        // Кнопка "Вернуться наверх"
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Инициализация графиков после загрузки страницы
+        window.addEventListener('load', () => {
+            initCharts();
+            
+            // Анимация появления элементов
+            setTimeout(() => {
+                document.querySelectorAll('section, .toc-card').forEach((el, i) => {
+                    setTimeout(() => {
+                        el.style.opacity = 1;
+                        el.style.transform = 'translateY(0)';
+                    }, 200 * i);
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>

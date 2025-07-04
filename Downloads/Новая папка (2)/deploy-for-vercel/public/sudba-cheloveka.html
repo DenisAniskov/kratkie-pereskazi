@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ "Судьба человека" - Михаил Шолохов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #1a2530;
+            --text: #333;
+            --text-light: #777;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            --header-gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            --card-bg: white;
+            --section-bg: white;
+            --footer-bg: white;
+            --text-color: #333;
+            --text-muted: #777;
+        }
+
+        .dark-mode {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #1a2530;
+            --dark: #f8f9fa;
+            --text: #f0f0f0;
+            --text-light: #b0b0b0;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --header-gradient: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+            --card-bg: #1e293b;
+            --section-bg: #1e293b;
+            --footer-bg: #1a2530;
+            --text-color: #f0f0f0;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .header-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--header-gradient);
+            opacity: 0.95;
+            z-index: -1;
+            border-radius: 0 0 50% 50% / 0 0 30% 30%;
+            transform: scaleX(1.2);
+        }
+        
+        .header-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .creator {
+            background: white;
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .dark-mode .creator {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: white;
+            margin: 15px 0 10px;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            padding: 0 20px;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+        
+        .source-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .source-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.1rem;
+        }
+        
+        .source-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .source-btn i {
+            font-size: 1.3rem;
+        }
+        
+        .toc-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .toc-card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 5px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .dark-mode .toc-card {
+            background: #2d3748;
+        }
+        
+        .toc-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-left-color: var(--accent);
+        }
+        
+        .toc-icon {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            width: 60px;
+            height: 60px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toc-card:hover .toc-icon {
+            color: var(--accent);
+            background: rgba(231, 76, 60, 0.1);
+            transform: rotate(5deg);
+        }
+        
+        .toc-content h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-size: 1.3rem;
+        }
+        
+        .toc-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        section {
+            background: var(--section-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .section-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .section-header h2 i {
+            color: var(--accent);
+            background: rgba(231, 76, 60, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-card {
+            display: flex;
+            gap: 40px;
+            margin: 30px 0;
+            align-items: center;
+        }
+        
+        .hero-img {
+            flex: 1;
+            max-width: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+            position: relative;
+        }
+        
+        .hero-img::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+        
+        .hero-img-placeholder {
+            color: white;
+            text-align: center;
+            padding: 30px;
+            z-index: 2;
+        }
+        
+        .hero-img-placeholder i {
+            font-size: 6rem;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-img-placeholder h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .hero-info {
+            flex: 2;
+        }
+        
+        .hero-info h3 {
+            font-size: 1.9rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 5px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-top-color: var(--accent);
+        }
+        
+        .stat-card i {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover i {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 2.8rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover h3 {
+            color: var(--accent);
+        }
+        
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        
+        .character-evolution {
+            display: flex;
+            flex-direction: column;
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 45px;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+            z-index: 1;
+            border-radius: 2px;
+        }
+        
+        .evolution-stage {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+            align-items: flex-start;
+            z-index: 2;
+        }
+        
+        .evolution-stage:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-badge {
+            width: 90px;
+            height: 90px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-right: 30px;
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .evolution-stage:hover .evolution-badge {
+            background: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+        }
+        
+        .evolution-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            flex: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.4s ease;
+        }
+        
+        .dark-mode .evolution-content {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .evolution-stage:hover .evolution-content {
+            border-left-color: var(--accent);
+            transform: translateX(10px);
+        }
+        
+        .evolution-content h4 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .evolution-content h4 i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .evolution-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        .dark-mode .stat-item {
+            background: rgba(52, 152, 219, 0.2);
+        }
+        
+        .stat-item:hover {
+            background: rgba(231, 76, 60, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .dark-mode .stat-item:hover {
+            background: rgba(231, 76, 60, 0.2);
+        }
+        
+        .stat-item i {
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+        
+        .chart-container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            height: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .dark-mode .chart-container {
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1abc9c 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .quote-section::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        
+        .quote-section blockquote {
+            font-size: 2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+        
+        .quote-section footer {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            opacity: 0.9;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .symbol-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .dark-mode .symbol-card {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .symbol-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        .symbol-icon {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .symbol-icon::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .symbol-card:hover .symbol-icon {
+            background: linear-gradient(135deg, var(--accent) 0%, #c0392b 100%);
+        }
+        
+        .symbol-content {
+            padding: 30px;
+        }
+        
+        .symbol-content h3 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .symbol-content h3 i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conclusion-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+        
+        .conclusion-box h3 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .conclusion-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .conclusion-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        
+        .conclusion-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .conclusion-item h4 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .conclusion-item h4 i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .extra-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--secondary);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark-mode .extra-card {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .extra-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+        }
+        
+        .extra-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-top-color: var(--accent);
+        }
+        
+        .extra-card h3 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .extra-card h3 i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        .questions-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .dark-mode .questions-container {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .questions-container h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 40px;
+        }
+        
+        .question-list {
+            counter-reset: question;
+        }
+        
+        .question-item {
+            margin-bottom: 30px;
+            padding: 25px 25px 25px 85px;
+            background: var(--light);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-mode .question-item {
+            background: #2d3748;
+        }
+        
+        .question-item:hover {
+            background: rgba(52, 152, 219, 0.05);
+            transform: translateX(10px);
+        }
+        
+        .dark-mode .question-item:hover {
+            background: rgba(52, 152, 219, 0.15);
+        }
+        
+        .question-item::before {
+            counter-increment: question;
+            content: counter(question);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 30px;
+            background: var(--footer-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .dark-mode footer {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .note {
+            background: rgba(231, 76, 60, 0.1);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border-left: 5px solid var(--accent);
+            color: var(--text-color);
+        }
+        
+        .dark-mode .note {
+            background: rgba(231, 76, 60, 0.2);
+        }
+        
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 30px 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            gap: 10px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(231, 76, 60, 0.5);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 992px) {
+            .hero-card {
+                flex-direction: column;
+            }
+            
+            .hero-img {
+                max-width: 100%;
+            }
+            
+            .character-evolution {
+                margin: 30px 0;
+            }
+            
+            .evolution-stage {
+                margin-bottom: 40px;
+            }
+            
+            .timeline-line {
+                left: 45px;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.9rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 30px 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .evolution-badge {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+                margin-right: 20px;
+            }
+            
+            .evolution-content {
+                padding: 20px;
+            }
+            
+            .evolution-content h4 {
+                font-size: 1.5rem;
+            }
+            
+            .quote-section {
+                padding: 30px 20px;
+            }
+            
+            .quote-section blockquote {
+                font-size: 1.6rem;
+            }
+            
+            .chart-container {
+                height: 350px;
+                padding: 15px;
+            }
+            
+            .creator {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .header-controls {
+                position: static;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .source-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .source-btn {
+                width: 85%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .toc-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .evolution-stage {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .evolution-badge {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .evolution-content {
+                text-align: center;
+            }
+            
+            .evolution-stats {
+                justify-content: center;
+            }
+            
+            .timeline-line {
+                display: none;
+            }
+            
+            .symbol-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .back-to-top {
+                padding: 12px 20px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        .back-to-menu {
+            display: inline-block;
+            margin: 18px 0 24px 0;
+            padding: 10px 22px;
+            background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1.08rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 2px 8px #1976d211;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .back-to-menu:hover {
+            background: linear-gradient(90deg, #1565c0 0%, #64b5f6 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-menu">← Назад в главное меню</a>
+    
+    <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="container">
+        <header>
+            <div class="header-gradient"></div>
+            <div class="creator">Создатель: Денис Аниськов</div>
+            <div class="header-controls">
+                <button class="control-btn" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="fontIncrease">
+                    <i class="fas fa-text-height"></i>
+                </button>
+                <button class="control-btn" id="fontDecrease">
+                    <i class="fas fa-text-width"></i>
+                </button>
+            </div>
+            <h1>«Судьба человека» — Михаил Шолохов</h1>
+            <p class="subtitle">Глубокий интерактивный анализ произведения с визуализацией</p>
+            
+            <div class="source-links">
+                <a href="https://azbyka.ru/fiction/sudba-cheloveka-mihail-sholohov/" class="source-btn" target="_blank">
+                    <i class="fas fa-book-open"></i> Оригинал произведения
+                </a>
+                <a href="https://obrazovaka.ru/books/sholohov/sudba-cheloveka" class="source-btn" target="_blank">
+                    <i class="fas fa-book"></i> Краткое содержание
+                </a>
+            </div>
+            
+            <div class="author">
+                <i class="fas fa-user-edit"></i>
+                <span>Литературный анализ подготовлен: 3 июля 2025 г.</span>
+            </div>
+        </header>
+        
+        <div class="toc-container">
+            <div class="section-header">
+                <h2><i class="fas fa-bookmark"></i> Навигация по анализу</h2>
+            </div>
+            <div class="toc-grid">
+                <a href="#hero" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Главный герой</h3>
+                        <p>Андрей Соколов: характер, судьба, трансформация личности</p>
+                    </div>
+                </a>
+                
+                <a href="#plot" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Сюжет и структура</h3>
+                        <p>Хронология событий и ключевые поворотные моменты</p>
+                    </div>
+                </a>
+                
+                <a href="#themes" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Темы и идеи</h3>
+                        <p>Основные философские вопросы и моральные дилеммы</p>
+                    </div>
+                </a>
+                
+                <a href="#symbols" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Символы и мотивы</h3>
+                        <p>Скрытые смыслы и значимые образы в произведении</p>
+                    </div>
+                </a>
+                
+                <a href="#conclusion" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Выводы и значение</h3>
+                        <p>Основные идеи и актуальность рассказа в современном мире</p>
+                    </div>
+                </a>
+                
+                <a href="#extras" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Дополнительно</h3>
+                        <p>Исторический контекст, экранизации и интересные факты</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <section id="hero">
+            <div class="section-header">
+                <h2><i class="fas fa-user"></i> Главный герой: Андрей Соколов</h2>
+            </div>
+            
+            <div class="hero-card">
+                <div class="hero-img">
+                    <div class="hero-img-placeholder">
+                        <i class="fas fa-user-shield"></i>
+                        <h3>Андрей Соколов</h3>
+                        <p>Образ русского солдата</p>
+                    </div>
+                </div>
+                <div class="hero-info">
+                    <h3>Траектория жизни</h3>
+                    <p>Андрей Соколов — простой русский шофёр, чья жизнь становится олицетворением судьбы всего народа во время Великой Отечественной войны. Его путь от мирного труженика до человека, прошедшего через ад войны и потерь, демонстрирует невероятную стойкость человеческого духа. Шолохов создал собирательный образ русского характера, способного сохранить человечность в бесчеловечных условиях.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-heart"></i>
+                            <h3>3</h3>
+                            <p>Члена семьи потерял</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-campground"></i>
+                            <h3>2+ года</h3>
+                            <p>В немецком плену</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-child"></i>
+                            <h3>1</h3>
+                            <p>Сироту усыновил</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-road"></i>
+                            <h3>1000+ км</h3>
+                            <p>Проехал дорог войны</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Эволюция характера</h2>
+            </div>
+            
+            <div class="character-evolution">
+                <div class="timeline-line"></div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-sun"></i> Довоенный период: Счастливый семьянин (1930-1941)</h4>
+                        <p>Мирная жизнь в Воронеже с любимой семьей. Андрей — ответственный работник, любящий муж и отец. Его характер отличается трудолюбием, жизнерадостностью и заботой о близких. В этот период Соколов олицетворяет типичного советского человека, живущего в предвоенном обществе.</p>
+                        <div class="evolution-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i> Семейное счастье: 5/5
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-smile"></i> Оптимизм: 4/5
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-shield-alt"></i> Стойкость: 3/5
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-fighter-jet"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-fire"></i> Военные годы: Испытание на прочность (1941-1945)</h4>
+                        <p>Плен, потери и жестокость войны закаляют характер Андрея. Он проявляет невероятную стойкость и силу духа, сохраняя человеческое достоинство в нечеловеческих условиях. В этот период раскрывается истинная суть его характера — способность к сопротивлению и нравственной стойкости даже перед лицом смерти.</p>
+                        <div class="evolution-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-heart-broken"></i> Потери: 100%
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-shield-alt"></i> Стойкость: 5/5
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-skull"></i> Отчаяние: 4/5
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-seedling"></i> Послевоенное время: Возрождение через милосердие (1946)</h4>
+                        <p>Встреча с Ванюшей становится поворотным моментом. Андрей находит силы жить дальше, проявляя милосердие и принимая ответственность за осиротевшего мальчика. В этом финальном этапе Соколов демонстрирует способность к возрождению и сохранению человечности, несмотря на все пережитые утраты.</p>
+                        <div class="evolution-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-hands-helping"></i> Милосердие: 5/5
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-seedling"></i> Надежда: 4/5
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i> Любовь: 4/5
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="characterChart"></canvas>
+            </div>
+        </section>
+        
+        <section id="plot">
+            <div class="section-header">
+                <h2><i class="fas fa-book-open"></i> Сюжет и структура рассказа</h2>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="emotionChart"></canvas>
+            </div>
+            
+            <div class="section-header" style="margin-top: 60px;">
+                <h2><i class="fas fa-timeline"></i> Хронология событий</h2>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-calendar-day"></i> 1. Довоенная жизнь</h3>
+                        <p>Мирное существование в Воронеже с женой Ириной, сыном Анатолием и двумя дочерьми. Работа шофёром, скромный достаток, семейное счастье. Шолохов подчёркивает обыденность и нормальность этой жизни как символ довоенной эпохи.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-fighter-jet"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-calendar-day"></i> 2. Начало войны</h3>
+                        <p>Мобилизация на фронт. Трогательное прощание с женой, которое оказывается последним. Андрей становится шофёром военной части. Первые месяцы войны — хаос отступления и первые столкновения с жестокостью войны.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-handcuffs"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-calendar-day"></i> 3. Плен</h3>
+                        <p>Попадает в плен, проходит через несколько концлагерей. Ключевая сцена - отказ пить за победу Германии. Побег из плена с важными документами. Этот период — испытание человеческого достоинства и воли к жизни.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-bomb"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-calendar-day"></i> 4. Трагические потери</h3>
+                        <p>Получает письмо о гибели жены и дочерей при бомбёжке. После возвращения на фронт узнаёт о сыне-офицере, который погибает 9 мая 1945 года. Апофеоз личной трагедии главного героя.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-calendar-day"></i> 5. Послевоенная жизнь</h3>
+                        <p>Работает шофёром, встречает сироту Ванюшу. Усыновление мальчика становится актом возрождения и обретения нового смысла жизни. Финал рассказа символизирует надежду и продолжение жизни.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="quote-section">
+            <blockquote>
+                «Два осиротевших человека, две песчинки, заброшенные в чужие края военным ураганом невиданной силы...»
+            </blockquote>
+            <footer>— Михаил Шолохов, «Судьба человека»</footer>
+        </div>
+        
+        <section id="themes">
+            <div class="section-header">
+                <h2><i class="fas fa-palette"></i> Темы и идеи произведения</h2>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="themesChart"></canvas>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Стойкость духа</h3>
+                        <p>Центральная тема рассказа — невероятная способность человека сохранять достоинство в самых бесчеловечных условиях. Соколов проходит через пытки плена, потерю семьи, но не ломается духовно. Его характер становится символом несгибаемой воли русского народа.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-heart-broken"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Цена войны</h3>
+                        <p>Шолохов показывает войну не через призму героики, а как трагедию, которая калечит судьбы. Каждая победа оплачена невосполнимыми потерями простых людей. Рассказ стал одним из первых в советской литературе, показавших истинную цену победы.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Милосердие</h3>
+                        <p>Способность к состраданию после перенесённых страданий — высшее проявление человечности. Усыновление Ванюши становится актом милосердия, который спасает обоих. Эта тема особенно значима в контексте послевоенного возрождения.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Семья как ценность</h3>
+                        <p>Рассказ утверждает семью как главную жизненную ценность. Потеря семьи для Соколова страшнее плена и пыток, а обретение нового сына даёт силы жить дальше. Шолохов подчёркивает, что именно семья является основой человеческого существования.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="symbols">
+            <div class="section-header">
+                <h2><i class="fas fa-search"></i> Символы и мотивы</h2>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-road"></i> Дорога</h3>
+                        <p>Символ жизненного пути, полного испытаний. Дорога сопровождает Соколова на всех этапах жизни — от мирных перевозок до фронтовых дорог и послевоенных странствий. Этот образ подчёркивает непрерывность жизненного пути, несмотря на все препятствия.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-bread-slice"></i> Хлеб</h3>
+                        <p>В сцене в лагере хлеб становится символом человеческого достоинства. Отказ Соколова пить за победу врага демонстрирует его нравственную силу. Этот эпизод — кульминация нравственного противостояния, где хлеб олицетворяет саму жизнь и выбор между честью и выживанием.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-eye"></i> Глаза Ванюши</h3>
+                        <p>"Как звёздочки ночью после дождя" — эти глаза становятся символом надежды, чистоты и будущего, ради которого стоит жить. В них Соколов видит отражение утраченной семьи и возможность возрождения. Этот образ символизирует свет в кромешной тьме отчаяния.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-cloud-rain"></i> Дождь</h3>
+                        <p>В финальной сцене дождь символизирует очищение и начало новой жизни. Это слезы по всем погибшим и одновременно вода, дающая ростки новой надежды. Дождь смывает прошлое и открывает путь к будущему, подчёркивая цикличность жизни.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="conclusion">
+            <div class="section-header">
+                <h2><i class="fas fa-lightbulb"></i> Выводы и значение произведения</h2>
+            </div>
+            
+            <div class="conclusion-box">
+                <h3>Философский смысл рассказа</h3>
+                <div class="conclusion-content">
+                    <div class="conclusion-item">
+                        <h4><i class="fas fa-question"></i> В чём смысл названия?</h4>
+                        <p>Шолохов показывает не просто судьбу одного человека, а собирательный образ народной судьбы. "Судьба человека" — это судьба всего народа, перемолотого войной. Рассказ поднимает вопрос о ценности человеческой жизни в экстремальных условиях и способности сохранить человечность.</p>
+                    </div>
+                    
+                    <div class="conclusion-item">
+                        <h4><i class="fas fa-lightbulb"></i> Главная идея</h4>
+                        <p>Даже в самых бесчеловечных условиях человек способен сохранить человечность. Война может отнять всё, кроме внутреннего стержня и способности к состраданию. Шолохов утверждает, что истинная победа — не только над врагом, но и над отчаянием, сохраняя способность любить и заботиться о других.</p>
+                    </div>
+                    
+                    <div class="conclusion-item">
+                        <h4><i class="fas fa-history"></i> Историческое значение</h4>
+                        <p>Одно из первых произведений, показавших войну без прикрас, через призму личной трагедии. Переосмысление героизма как стойкости духа, а не только военных подвигов. Рассказ стал поворотным моментом в военной прозе, открыв тему "маленького человека" на войне и его личной трагедии.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="impactChart"></canvas>
+            </div>
+        </section>
+        
+        <section id="extras">
+            <div class="section-header">
+                <h2><i class="fas fa-plus-circle"></i> Дополнительные материалы</h2>
+            </div>
+            
+            <div class="extras-grid">
+                <div class="extra-card">
+                    <h3><i class="fas fa-book"></i> Жанровые особенности</h3>
+                    <p>Рассказ с элементами притчи и военной прозы. Реалистическое изображение сочетается с глубоким символическим подтекстом. Особенность — "рассказ в рассказе" (обрамленная композиция), где повествование ведётся от лица случайного встречного, что усиливает эффект достоверности.</p>
+                </div>
+                
+                <div class="extra-card">
+                    <h3><i class="fas fa-film"></i> Экранизация</h3>
+                    <p>Фильм Сергея Бондарчука (1959) стал классикой советского кинематографа. Получил главный приз на кинофестивале в Локарно. Бондарчук сам сыграл роль Соколова, создав эталонный образ русского солдата. Фильм отличается психологической глубиной и бережным отношением к первоисточнику.</p>
+                </div>
+                
+                <div class="extra-card">
+                    <h3><i class="fas fa-history"></i> Исторический контекст</h3>
+                    <p>Написан в 1956-1957 гг. в период "оттепели". Одно из первых произведений, показавших правду о войне без излишней героизации. Основан на реальной истории, услышанной Шолоховым за день до написания рассказа. Публикация стала событием в литературной жизни СССР.</p>
+                </div>
+                
+                <div class="extra-card">
+                    <h3><i class="fas fa-graduation-cap"></i> В школьной программе</h3>
+                    <p>Изучается в 9-10 классах. Темы для сочинений: "Сила духа русского человека", "Цена победы в войне", "Милосердие как высшая добродетель". Рассказ используется для обсуждения нравственных ценностей и исторической памяти.</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="relevanceChart"></canvas>
+            </div>
+        </section>
+        
+        <div class="questions-container">
+            <h3>Вопросы для глубокого анализа</h3>
+            <div class="question-list">
+                <div class="question-item">
+                    Почему рассказ назван "Судьба человека", а не "Судьба Соколова"? Как это связано с авторским замыслом и концепцией произведения?
+                </div>
+                
+                <div class="question-item">
+                    Как в образе Соколова сочетаются типичные черты русского характера и индивидуальные особенности? Какие универсальные человеческие качества он воплощает?
+                </div>
+                
+                <div class="question-item">
+                    Какую роль в рассказе играет образ рассказчика? Почему Шолохов использует обрамлённую композицию и как это влияет на восприятие истории?
+                </div>
+                
+                <div class="question-item">
+                    Можно ли считать финал рассказа оптимистичным? Какие аргументы за и против? Как финал отражает авторскую позицию?
+                </div>
+                
+                <div class="question-item">
+                    Как в произведении показана тема отцовства? Сравните отношения Соколова с родным сыном и приёмным. Что изменилось в его отцовских чувствах?
+                </div>
+                
+                <div class="question-item">
+                    В чём новаторство Шолохова в изображении войны? Чем отличается его подход от других военных произведений советского периода?
+                </div>
+            </div>
+        </div>
+        
+        <div class="note">
+            <p><strong><i class="fas fa-exclamation-circle"></i> Примечание:</strong> Данный интерактивный анализ создан для образовательных целей и демонстрирует современный подход к литературному анализу. Все графики и диаграммы сгенерированы с помощью JavaScript. Для корректного отображения необходим современный браузер. Обновлено: 3 июля 2025 г.</p>
+        </div>
+        
+        <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i> Вернуться наверх</a>
+        
+        <footer>
+            <p>© 2025 Литературный анализ «Судьба человека» | Для образовательных целей</p>
+            <p>Создатель: Денис Аниськов | Использованные технологии: HTML5, CSS3, JavaScript, Chart.js</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Инициализация графиков
+        function initCharts() {
+            // График эволюции характера
+            const charCtx = document.getElementById('characterChart').getContext('2d');
+            const charChart = new Chart(charCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Стойкость', 'Милосердие', 'Оптимизм', 'Любовь', 'Надежда', 'Ответственность'],
+                    datasets: [
+                        {
+                            label: 'Довоенный период',
+                            data: [65, 75, 85, 90, 80, 70],
+                            fill: true,
+                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                            borderColor: 'rgb(52, 152, 219)',
+                            pointBackgroundColor: 'rgb(52, 152, 219)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(52, 152, 219)',
+                            pointRadius: 5
+                        },
+                        {
+                            label: 'Военные годы',
+                            data: [95, 60, 30, 40, 20, 90],
+                            fill: true,
+                            backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                            borderColor: 'rgb(231, 76, 60)',
+                            pointBackgroundColor: 'rgb(231, 76, 60)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(231, 76, 60)',
+                            pointRadius: 5
+                        },
+                        {
+                            label: 'После войны',
+                            data: [85, 90, 65, 85, 75, 95],
+                            fill: true,
+                            backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                            borderColor: 'rgb(46, 204, 113)',
+                            pointBackgroundColor: 'rgb(46, 204, 113)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(46, 204, 113)',
+                            pointRadius: 5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Эволюция характера Андрея Соколова',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+
+            // График эмоционального состояния
+            const emotionCtx = document.getElementById('emotionChart').getContext('2d');
+            const emotionChart = new Chart(emotionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Довоенное время', 'Начало войны', 'Плен', 'Потеря семьи', 'После войны', 'Встреча с Ванюшей'],
+                    datasets: [{
+                        label: 'Эмоциональное состояние',
+                        data: [85, 30, 15, 5, 25, 65],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 4,
+                        pointRadius: 8,
+                        pointBackgroundColor: '#3498db',
+                        pointBorderColor: '#fff',
+                        pointHoverRadius: 10,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Эмоциональная траектория главного героя',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Уровень: ${context.parsed.y}%`;
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Уровень надежды и счастья',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Периоды жизни Андрея Соколова',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+
+            // График тем произведения
+            const themesCtx = document.getElementById('themesChart').getContext('2d');
+            const themesChart = new Chart(themesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Стойкость человека', 'Цена войны', 'Отцовство и семья', 'Милосердие'],
+                    datasets: [{
+                        data: [35, 30, 20, 15],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.8)',
+                            'rgba(231, 76, 60, 0.8)',
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(155, 89, 182, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(52, 152, 219)',
+                            'rgb(231, 76, 60)',
+                            'rgb(46, 204, 113)',
+                            'rgb(155, 89, 182)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Распределение ключевых тем произведения',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 2000
+                    }
+                }
+            });
+        }
+
+        // Переключение темы
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Проверка сохраненной темы
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.className = 'fas fa-sun';
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Управление размером шрифта
+        const fontIncrease = document.getElementById('fontIncrease');
+        const fontDecrease = document.getElementById('fontDecrease');
+        const html = document.documentElement;
+        
+        function changeFontSize(direction) {
+            const currentSize = parseFloat(getComputedStyle(html).fontSize);
+            const newSize = direction === 'increase' ? currentSize * 1.1 : currentSize * 0.9;
+            html.style.fontSize = `${newSize}px`;
+            localStorage.setItem('fontSize', newSize);
+        }
+        
+        // Проверка сохраненного размера шрифта
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            html.style.fontSize = `${savedFontSize}px`;
+        }
+        
+        fontIncrease.addEventListener('click', () => changeFontSize('increase'));
+        fontDecrease.addEventListener('click', () => changeFontSize('decrease'));
+        
+        // Кнопка "Вернуться наверх"
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Мобильное меню
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const tocContainer = document.querySelector('.toc-container');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            tocContainer.classList.toggle('mobile-visible');
+        });
+        
+        // Инициализация графиков после загрузки страницы
+        window.addEventListener('load', () => {
+            initCharts();
+            
+            // Анимация появления элементов
+            setTimeout(() => {
+                document.querySelectorAll('section, .toc-card').forEach((el, i) => {
+                    setTimeout(() => {
+                        el.style.opacity = 1;
+                        el.style.transform = 'translateY(0)';
+                    }, 200 * i);
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>

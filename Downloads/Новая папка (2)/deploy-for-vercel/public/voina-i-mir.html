@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ "Война и мир" - Лев Толстой</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8b4513;
+            --accent: #c19a6b;
+            --light: #f8f9fa;
+            --dark: #1a2530;
+            --text: #333;
+            --text-light: #777;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            --header-gradient: linear-gradient(135deg, #8b4513 0%, #2c3e50 100%);
+            --card-bg: white;
+            --section-bg: white;
+            --footer-bg: white;
+            --text-color: #333;
+            --text-muted: #777;
+        }
+
+        .dark-mode {
+            --primary: #c19a6b;
+            --secondary: #5d4037;
+            --accent: #d7ccc8;
+            --light: #1a2530;
+            --dark: #f8f9fa;
+            --text: #f0f0f0;
+            --text-light: #b0b0b0;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --header-gradient: linear-gradient(135deg, #5d4037 0%, #1a1a2e 100%);
+            --card-bg: #1e293b;
+            --section-bg: #1e293b;
+            --footer-bg: #1a2530;
+            --text-color: #f0f0f0;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .header-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--header-gradient);
+            opacity: 0.95;
+            z-index: -1;
+            border-radius: 0 0 50% 50% / 0 0 30% 30%;
+            transform: scaleX(1.2);
+        }
+        
+        .header-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .creator {
+            background: white;
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .dark-mode .creator {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: white;
+            margin: 15px 0 10px;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            padding: 0 20px;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+        
+        .source-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .source-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.1rem;
+        }
+        
+        .source-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .source-btn i {
+            font-size: 1.3rem;
+        }
+        
+        .toc-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .toc-card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 5px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .dark-mode .toc-card {
+            background: #2d3748;
+        }
+        
+        .toc-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-left-color: var(--accent);
+        }
+        
+        .toc-icon {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            width: 60px;
+            height: 60px;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toc-card:hover .toc-icon {
+            color: var(--accent);
+            background: rgba(193, 154, 107, 0.1);
+            transform: rotate(5deg);
+        }
+        
+        .toc-content h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-size: 1.3rem;
+        }
+        
+        .toc-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        section {
+            background: var(--section-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .section-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .section-header h2 i {
+            color: var(--accent);
+            background: rgba(193, 154, 107, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-card {
+            display: flex;
+            gap: 40px;
+            margin: 30px 0;
+            align-items: center;
+        }
+        
+        .hero-img {
+            flex: 1;
+            max-width: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #8b4513 0%, #2c3e50 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+            position: relative;
+        }
+        
+        .hero-img::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+        
+        .hero-img-placeholder {
+            color: white;
+            text-align: center;
+            padding: 30px;
+            z-index: 2;
+        }
+        
+        .hero-img-placeholder i {
+            font-size: 6rem;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-img-placeholder h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .hero-info {
+            flex: 2;
+        }
+        
+        .hero-info h3 {
+            font-size: 1.9rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 5px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-top-color: var(--accent);
+        }
+        
+        .stat-card i {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover i {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 2.8rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover h3 {
+            color: var(--accent);
+        }
+        
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        
+        .character-evolution {
+            display: flex;
+            flex-direction: column;
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 45px;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+            z-index: 1;
+            border-radius: 2px;
+        }
+        
+        .evolution-stage {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+            align-items: flex-start;
+            z-index: 2;
+        }
+        
+        .evolution-stage:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-badge {
+            width: 90px;
+            height: 90px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-right: 30px;
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .evolution-stage:hover .evolution-badge {
+            background: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(193, 154, 107, 0.4);
+        }
+        
+        .evolution-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            flex: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.4s ease;
+        }
+        
+        .dark-mode .evolution-content {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .evolution-stage:hover .evolution-content {
+            border-left-color: var(--accent);
+            transform: translateX(10px);
+        }
+        
+        .evolution-content h4 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .evolution-content h4 i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .evolution-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(139, 69, 19, 0.1);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+        
+        .dark-mode .stat-item {
+            background: rgba(139, 69, 19, 0.2);
+        }
+        
+        .stat-item:hover {
+            background: rgba(193, 154, 107, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .dark-mode .stat-item:hover {
+            background: rgba(193, 154, 107, 0.2);
+        }
+        
+        .stat-item i {
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+        
+        .chart-container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            height: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .dark-mode .chart-container {
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #5d4037 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .quote-section::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        
+        .quote-section blockquote {
+            font-size: 2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+        
+        .quote-section footer {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            opacity: 0.9;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .symbol-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .dark-mode .symbol-card {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .symbol-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        .symbol-icon {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .symbol-icon::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .symbol-card:hover .symbol-icon {
+            background: linear-gradient(135deg, var(--accent) 0%, #c19a6b 100%);
+        }
+        
+        .symbol-content {
+            padding: 30px;
+        }
+        
+        .symbol-content h3 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .symbol-content h3 i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conclusion-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+        
+        .conclusion-box h3 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .conclusion-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .conclusion-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        
+        .conclusion-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .conclusion-item h4 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .conclusion-item h4 i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .extra-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--secondary);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark-mode .extra-card {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .extra-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+        }
+        
+        .extra-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-top-color: var(--accent);
+        }
+        
+        .extra-card h3 {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .extra-card h3 i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        .questions-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .dark-mode .questions-container {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .questions-container h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 40px;
+        }
+        
+        .question-list {
+            counter-reset: question;
+        }
+        
+        .question-item {
+            margin-bottom: 30px;
+            padding: 25px 25px 25px 85px;
+            background: var(--light);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .dark-mode .question-item {
+            background: #2d3748;
+        }
+        
+        .question-item:hover {
+            background: rgba(139, 69, 19, 0.05);
+            transform: translateX(10px);
+        }
+        
+        .dark-mode .question-item:hover {
+            background: rgba(139, 69, 19, 0.15);
+        }
+        
+        .question-item::before {
+            counter-increment: question;
+            content: counter(question);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 30px;
+            background: var(--footer-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .dark-mode footer {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .note {
+            background: rgba(193, 154, 107, 0.1);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border-left: 5px solid var(--accent);
+            color: var(--text-color);
+        }
+        
+        .dark-mode .note {
+            background: rgba(193, 154, 107, 0.2);
+        }
+        
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 30px 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+            gap: 10px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(193, 154, 107, 0.5);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .character-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .character-item {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .character-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .character-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .character-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .character-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 50px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--secondary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -12px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -8px;
+        }
+        
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-card {
+                flex-direction: column;
+            }
+            
+            .hero-img {
+                max-width: 100%;
+            }
+            
+            .character-evolution {
+                margin: 30px 0;
+            }
+            
+            .evolution-stage {
+                margin-bottom: 40px;
+            }
+            
+            .timeline-line {
+                left: 45px;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.9rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0 !important;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 30px 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .evolution-badge {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+                margin-right: 20px;
+            }
+            
+            .evolution-content {
+                padding: 20px;
+            }
+            
+            .evolution-content h4 {
+                font-size: 1.5rem;
+            }
+            
+            .quote-section {
+                padding: 30px 20px;
+            }
+            
+            .quote-section blockquote {
+                font-size: 1.6rem;
+            }
+            
+            .chart-container {
+                height: 350px;
+                padding: 15px;
+            }
+            
+            .creator {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .header-controls {
+                position: static;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .source-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .source-btn {
+                width: 85%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .toc-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .evolution-stage {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .evolution-badge {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .evolution-content {
+                text-align: center;
+            }
+            
+            .evolution-stats {
+                justify-content: center;
+            }
+            
+            .timeline-line {
+                display: none;
+            }
+            
+            .symbol-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .back-to-top {
+                padding: 12px 20px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        .back-to-menu {
+            display: inline-block;
+            margin: 18px 0 24px 0;
+            padding: 10px 22px;
+            background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1.08rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 2px 8px #1976d211;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .back-to-menu:hover {
+            background: linear-gradient(90deg, #1565c0 0%, #64b5f6 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-menu">← Назад в главное меню</a>
+    
+    <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="container">
+        <header>
+            <div class="header-gradient"></div>
+            <div class="creator">Создатель: Денис Аниськов</div>
+            <div class="header-controls">
+                <button class="control-btn" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="fontIncrease">
+                    <i class="fas fa-text-height"></i>
+                </button>
+                <button class="control-btn" id="fontDecrease">
+                    <i class="fas fa-text-width"></i>
+                </button>
+            </div>
+            <h1>«Война и мир» — Лев Толстой</h1>
+            <p class="subtitle">Глубокий интерактивный анализ эпопеи с визуализацией</p>
+            
+            <div class="source-links">
+                <a href="https://ilibrary.ru/text/11/index.html" class="source-btn" target="_blank">
+                    <i class="fas fa-book-open"></i> Полный текст произведения
+                </a>
+                <a href="https://briefly.ru/tolstoi/voina_i_mir/" class="source-btn" target="_blank">
+                    <i class="fas fa-book"></i> Краткое содержание
+                </a>
+            </div>
+            
+            <div class="author">
+                <i class="fas fa-user-edit"></i>
+                <span>Литературный анализ подготовлен: 4 июля 2025 г.</span>
+            </div>
+        </header>
+        
+        <div class="toc-container">
+            <div class="section-header">
+                <h2><i class="fas fa-bookmark"></i> Навигация по анализу</h2>
+            </div>
+            <div class="toc-grid">
+                <a href="#structure" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Структура романа</h3>
+                        <p>Особенности композиции, тома и их содержание</p>
+                    </div>
+                </a>
+                
+                <a href="#characters" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Ключевые персонажи</h3>
+                        <p>Анализ главных героев и их эволюция</p>
+                    </div>
+                </a>
+                
+                <a href="#themes" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Темы и идеи</h3>
+                        <p>Основные философские вопросы и проблемы</p>
+                    </div>
+                </a>
+                
+                <a href="#war" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-fighter-jet"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Изображение войны</h3>
+                        <p>Сражения, исторические личности, философия войны</p>
+                    </div>
+                </a>
+                
+                <a href="#peace" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Мирная жизнь</h3>
+                        <p>Салонная жизнь, любовные линии, семейные ценности</p>
+                    </div>
+                </a>
+                
+                <a href="#philosophy" class="toc-card">
+                    <div class="toc-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="toc-content">
+                        <h3>Философия Толстого</h3>
+                        <p>Идеи фатализма, свободы воли и смысла жизни</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <section id="structure">
+            <div class="section-header">
+                <h2><i class="fas fa-book"></i> Структура романа-эпопеи</h2>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="structureChart"></canvas>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-book"></i>
+                    <h3>4</h3>
+                    <p>Тома</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-chapter"></i>
+                    <h3>15+</h3>
+                    <p>Частей</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>361</h3>
+                    <p>Глав</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-user"></i>
+                    <h3>559</h3>
+                    <p>Персонажей</p>
+                </div>
+            </div>
+            
+            <div class="section-header" style="margin-top: 60px;">
+                <h2><i class="fas fa-timeline"></i> Хронология событий</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1805</div>
+                        <p>Война с Наполеоном в Европе. Салон Анны Павловны Шерер. Именины у Ростовых. Андрей Болконский уходит на войну. Шенграбенское и Аустерлицкое сражения.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1807</div>
+                        <p>Тильзитский мир. Возвращение князя Андрея. Смерть жены. Встреча с Пьером на пароме. Деятельность масонов.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1809-1812</div>
+                        <p>Бал у Ростовых. Первое предложение Андрея Наташе. Разрыв с Наташей. Пьер женится на Элен. Отечественная война 1812 года.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1812</div>
+                        <p>Бородинское сражение. Пожар Москвы. Партизанская война. Ранение князя Андрея. Плен Пьера. Смерть Пети Ростова.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1813-1820</div>
+                        <p>Смерть князя Андрея. Освобождение Пьера. Свадьба Пьера и Наташи. Семейная жизнь Ростовых и Безуховых. Эпилог.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="quote-section">
+            <blockquote>
+                «Все счастливые семьи похожи друг на друга, каждая несчастливая семья несчастлива по-своему»
+            </blockquote>
+            <footer>— Лев Толстой, «Анна Каренина»</footer>
+        </div>
+        
+        <section id="characters">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Ключевые персонажи</h2>
+            </div>
+            
+            <div class="character-list">
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h4>Пьер Безухов</h4>
+                    <p>Незаконнорожденный сын графа Безухова. Ищет смысла жизни через масонство, войну и семейное счастье</p>
+                </div>
+                
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Андрей Болконский</h4>
+                    <p>Князь, интеллектуал, разочарованный в светской жизни. Ищет славы на войне, проходит путь духовного перерождения</p>
+                </div>
+                
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Наташа Ростова</h4>
+                    <p>Эмоциональная, искренняя, полная жизни. Проходит путь от наивной девушки до мудрой матери</p>
+                </div>
+                
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Николай Ростов</h4>
+                    <p>Честный, порядочный, но ограниченный. Находит счастье в семейной жизни с Марьей Болконской</p>
+                </div>
+                
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <h4>Марья Болконская</h4>
+                    <p>Религиозная, добрая, преданная семье. Находит счастье в материнстве и семейной жизни</p>
+                </div>
+                
+                <div class="character-item">
+                    <div class="character-icon">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <h4>Элен Курагина</h4>
+                    <p>Красивая, расчетливая, аморальная. Олицетворяет ложь и развращенность высшего света</p>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Эволюция Пьера Безухова</h2>
+            </div>
+            
+            <div class="character-evolution">
+                <div class="timeline-line"></div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-search"></i> Этап 1: Наивный идеалист (1805)</h4>
+                        <p>Неуклюжий, добрый, ищущий свое место в жизни. Наследует огромное состояние, попадает под влияние князя Василия и женится на Элен Курагиной. Разочарование в браке.</p>
+                        <div class="evolution-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-brain"></i> Самопознание: 30%
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i> Счастье: 20%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-hands-praying"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-search"></i> Этап 2: Духовные искания (1807-1812)</h4>
+                        <p>Вступает в масонство, пытается улучшить жизнь крестьян. Разочаровывается в масонах. Участвует в Бородинском сражении, остается в Москве, чтобы убить Наполеона.</p>
+                        <div class="evolution-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-brain"></i> Самопознание: 60%
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i> Счастье: 40%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-peace"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-search"></i> Этап 3: Плен и прозрение (1812)</h4>
+                        <p>Попадает в плен, встречает Платона Каратаева. Постигает простую мудрость жизни. Освобождается с новым пониманием счастья и смысла жизни.</p>
+                        <div class="evolution-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-brain"></i> Самопознание: 80%
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i> Счастье: 70%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="evolution-stage">
+                    <div class="evolution-badge">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="evolution-content">
+                        <h4><i class="fas fa-search"></i> Этап 4: Семейное счастье (1820)</h4>
+                        <p>Женится на Наташе Ростовой. Находит гармонию в семейной жизни. Участвует в тайном обществе, продолжая искать пути улучшения общества.</p>
+                        <div class="evolution-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-brain"></i> Самопознание: 95%
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i> Счастье: 90%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="themes">
+            <div class="section-header">
+                <h2><i class="fas fa-palette"></i> Темы и идеи произведения</h2>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="themesChart"></canvas>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Война и мир</h3>
+                        <p>Основная антитеза романа. Война как хаос, разрушение, испытание. Мир как гармония, семья, созидание. Толстой показывает их взаимосвязь и взаимопроникновение.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Историзм</h3>
+                        <p>Толстой переосмысливает роль личности в истории. Великие люди - лишь ярлыки, которые мы вешаем на стихийные исторические процессы. Истинная история творится народом.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Любовь и семья</h3>
+                        <p>Семья как основа человеческого счастья. Эволюция любовных отношений героев. Контраст истинной любви (Пьер и Наташа) и ложной (Элен и Анатоль).</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-star"></i> Поиск смысла жизни</h3>
+                        <p>Центральная тема для главных героев. Пьер ищет через масонство, войну и семью. Андрей - через славу, любовь и смерть. Наташа находит смысл в материнстве.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="war">
+            <div class="section-header">
+                <h2><i class="fas fa-fighter-jet"></i> Философия войны у Толстого</h2>
+            </div>
+            
+            <div class="hero-card">
+                <div class="hero-img">
+                    <div class="hero-img-placeholder">
+                        <i class="fas fa-cannons"></i>
+                        <h3>Бородинское сражение</h3>
+                        <p>Кульминация войны 1812 года</p>
+                    </div>
+                </div>
+                <div class="hero-info">
+                    <h3>Особенности изображения войны</h3>
+                    <p>Толстой принципиально отходит от традиционного изображения войны как череды подвигов великих полководцев. Вместо этого он показывает "войну не в правильном, красивом и блестящем строе, с музыкой и барабанным боем, с развевающимися знаменами и гарцующими генералами", а в настоящем ее выражении - "в крови, в страданиях, в смерти".</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-book"></i>
+                            <h3>83</h3>
+                            <p>Главы о войне</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-user"></i>
+                            <h3>200+</h3>
+                            <p>Исторических лиц</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-skull"></i>
+                            <h3>58,000</h3>
+                            <p>Потери при Бородино</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-chess"></i>
+                            <h3>0</h3>
+                            <p>Значение планов</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h2><i class="fas fa-brain"></i> Основные идеи о войне</h2>
+            </div>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-ban"></i> Критика военной науки</h3>
+                        <p>Толстой отрицает возможность планирования сражений. В хаосе войны планы полководцев неосуществимы. Победа определяется "духом войска", а не гениальностью командующих.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-crown"></i> Роль народа</h3>
+                        <p>Народ - истинный творец истории. Победу 1812 года обеспечили не царь и генералы, а простые солдаты, партизаны, крестьяне, сжигавшие свои дома, чтобы не оставлять их врагу.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-dice"></i> Фатализм истории</h3>
+                        <p>Исторические события предопределены. Великие личности лишь воображают, что управляют событиями. На самом деле они - "рабы истории", действующие по необходимости.</p>
+                    </div>
+                </div>
+                
+                <div class="symbol-card">
+                    <div class="symbol-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="symbol-content">
+                        <h3><i class="fas fa-binoculars"></i> Взгляд снизу</h3>
+                        <p>Толстой показывает сражения глазами невоенных персонажей (Пьер на Бородино). Это позволяет передать хаос, ужас и абсурдность войны без прикрас.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="philosophy">
+            <div class="section-header">
+                <h2><i class="fas fa-lightbulb"></i> Философия Толстого</h2>
+            </div>
+            
+            <div class="conclusion-box">
+                <h3>Основные философские концепции</h3>
+                <div class="conclusion-content">
+                    <div class="conclusion-item">
+                        <h4><i class="fas fa-dice"></i> Фатализм истории</h4>
+                        <p>Исторические события предопределены. Человек свободен лишь в своей личной жизни, но в истории он - "раба необходимости". Победа в войне определяется не гением полководцев, а "духом войска" и стечением обстоятельств.</p>
+                    </div>
+                    
+                    <div class="conclusion-item">
+                        <h4><i class="fas fa-hands-helping"></i> Народность</h4>
+                        <p>Народ - носитель истинных ценностей и главная движущая сила истории. Простые люди (Платон Каратаев, Тихон Щербатый) ближе к истине, чем аристократы. Их мудрость - в простоте и естественности.</p>
+                    </div>
+                    
+                    <div class="conclusion-item">
+                        <h4><i class="fas fa-home"></i> Семейные ценности</h4>
+                        <p>Семья - основа человеческого счастья. Истинные семьи (Ростовы, Болконские) основаны на любви, взаимопонимании. Ложные семьи (Курагины) - на расчете и эгоизме. В эпилоге идеал семьи воплощен в союзе Пьера и Наташи.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="philosophyChart"></canvas>
+            </div>
+        </section>
+        
+        <div class="note">
+            <p><strong><i class="fas fa-exclamation-circle"></i> Примечание:</strong> Данный интерактивный анализ создан для образовательных целей и демонстрирует современный подход к литературному анализу. Все графики и диаграммы сгенерированы с помощью JavaScript. Для корректного отображения необходим современный браузер. Обновлено: 4 июля 2025 г.</p>
+        </div>
+        
+        <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i> Вернуться наверх</a>
+        
+        <footer>
+            <p>© 2025 Литературный анализ «Война и мир» | Для образовательных целей</p>
+            <p>Создатель: Денис Аниськов | Использованные технологии: HTML5, CSS3, JavaScript, Chart.js</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Инициализация графиков
+        function initCharts() {
+            // График структуры романа
+            const structureCtx = document.getElementById('structureChart').getContext('2d');
+            const structureChart = new Chart(structureCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Том 1 (1805)', 'Том 2 (1806-1811)', 'Том 3 (1812)', 'Том 4 (1812-1813)', 'Эпилог (1820)'],
+                    datasets: [{
+                        label: 'Количество страниц',
+                        data: [350, 300, 420, 380, 150],
+                        backgroundColor: [
+                            'rgba(139, 69, 19, 0.7)',
+                            'rgba(193, 154, 107, 0.7)',
+                            'rgba(139, 69, 19, 0.7)',
+                            'rgba(193, 154, 107, 0.7)',
+                            'rgba(93, 64, 55, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(139, 69, 19)',
+                            'rgb(193, 154, 107)',
+                            'rgb(139, 69, 19)',
+                            'rgb(193, 154, 107)',
+                            'rgb(93, 64, 55)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Структура романа "Война и мир"',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Страницы',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Тома романа',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+
+            // График тем произведения
+            const themesCtx = document.getElementById('themesChart').getContext('2d');
+            const themesChart = new Chart(themesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Война', 'Мирная жизнь', 'Философия', 'Любовь', 'История'],
+                    datasets: [{
+                        data: [30, 25, 20, 15, 10],
+                        backgroundColor: [
+                            'rgba(139, 69, 19, 0.8)',
+                            'rgba(193, 154, 107, 0.8)',
+                            'rgba(93, 64, 55, 0.8)',
+                            'rgba(210, 180, 140, 0.8)',
+                            'rgba(160, 82, 45, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(139, 69, 19)',
+                            'rgb(193, 154, 107)',
+                            'rgb(93, 64, 55)',
+                            'rgb(210, 180, 140)',
+                            'rgb(160, 82, 45)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Распределение основных тем',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 2000
+                    }
+                }
+            });
+
+            // График философских концепций
+            const philosophyCtx = document.getElementById('philosophyChart').getContext('2d');
+            const philosophyChart = new Chart(philosophyCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Фатализм', 'Свобода воли', 'Народность', 'Семья', 'Мораль', 'Религия'],
+                    datasets: [
+                        {
+                            label: 'Философия Толстого',
+                            data: [85, 65, 90, 95, 80, 75],
+                            fill: true,
+                            backgroundColor: 'rgba(139, 69, 19, 0.2)',
+                            borderColor: 'rgb(139, 69, 19)',
+                            pointBackgroundColor: 'rgb(139, 69, 19)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(139, 69, 19)',
+                            pointRadius: 5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Философские концепции в романе',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        // Переключение темы
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Проверка сохраненной темы
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.className = 'fas fa-sun';
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Управление размером шрифта
+        const fontIncrease = document.getElementById('fontIncrease');
+        const fontDecrease = document.getElementById('fontDecrease');
+        const html = document.documentElement;
+        
+        function changeFontSize(direction) {
+            const currentSize = parseFloat(getComputedStyle(html).fontSize);
+            const newSize = direction === 'increase' ? currentSize * 1.1 : currentSize * 0.9;
+            html.style.fontSize = `${newSize}px`;
+            localStorage.setItem('fontSize', newSize);
+        }
+        
+        // Проверка сохраненного размера шрифта
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            html.style.fontSize = `${savedFontSize}px`;
+        }
+        
+        fontIncrease.addEventListener('click', () => changeFontSize('increase'));
+        fontDecrease.addEventListener('click', () => changeFontSize('decrease'));
+        
+        // Кнопка "Вернуться наверх"
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Инициализация графиков после загрузки страницы
+        window.addEventListener('load', () => {
+            initCharts();
+            
+            // Анимация появления элементов
+            setTimeout(() => {
+                document.querySelectorAll('section, .toc-card').forEach((el, i) => {
+                    setTimeout(() => {
+                        el.style.opacity = 1;
+                        el.style.transform = 'translateY(0)';
+                    }, 200 * i);
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
