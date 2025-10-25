@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AI Plants Scanner</string>
+    <string name="scan_plant">Сканировать растение</string>
+    <string name="history">История</string>
+    <string name="take_photo">Сделать фото</string>
+    <string name="analyzing">Анализирую растение…</string>
+    <string name="plant_name">Название растения</string>
+    <string name="health_status">Состояние здоровья</string>
+    <string name="care_tips">Советы по уходу</string>
+    <string name="camera_permission_required">Требуется доступ к камере</string>
+    <string name="retry">Повторить</string>
+    <string name="error_occurred">Произошла ошибка</string>
+</resources>

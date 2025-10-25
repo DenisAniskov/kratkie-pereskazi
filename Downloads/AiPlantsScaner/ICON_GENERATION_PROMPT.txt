@@ -1,0 +1,215 @@
+==========================================
+ПРОМПТ ДЛЯ ГЕНЕРАЦИИ ИКОНКИ ПРИЛОЖЕНИЯ
+AI Plants Scanner
+==========================================
+
+Для использования в Stable Diffusion, DALL-E, Midjourney или других генераторах изображений
+
+==========================================
+ВАРИАНТ 1: Современный минималистичный стиль
+==========================================
+
+Create a modern app icon for a plant scanning mobile application.
+
+Main elements:
+- Centered green leaf with visible veins
+- Scanning elements: camera viewfinder frame or scan lines overlay
+- AI/tech elements: subtle circuit pattern or pixel effect on leaf edges
+- Simple magnifying glass highlighting part of the leaf
+
+Style:
+- Flat design, Material Design 3 aesthetic
+- Vibrant green color palette: emerald green (#4CAF50), lime accents (#8BC34A)
+- Clean white or light background
+- Rounded square format (1024x1024px)
+- High contrast, clearly visible at small sizes
+- Modern, professional, trustworthy look
+
+Technical requirements:
+- Simple enough to scale down to 48x48px
+- No text or small details
+- Solid shapes with clear outlines
+- Icon should work on both light and dark backgrounds
+
+Style reference: Google Material Design icons, iOS app icons
+
+==========================================
+ВАРИАНТ 2: Более детальный научный стиль
+==========================================
+
+Design a professional app icon for botanical plant identification application.
+
+Central image:
+- Realistic green leaf (monstera or fern style) with detailed texture
+- Camera lens or scanning reticle surrounding the leaf
+- Subtle AI neural network pattern in background
+- Small sparkles or light rays suggesting analysis/scanning
+
+Color scheme:
+- Rich forest green (#2E7D32) for main leaf
+- Bright lime green (#9CCC65) for highlights
+- White/light blue scanning elements
+- Gradient background: light to dark green
+
+Composition:
+- Leaf positioned at 45-degree angle for depth
+- Clean borders, rounded square shape
+- High resolution, crisp details
+- Professional scientific feel mixed with modern tech
+
+Technical specs:
+- 1024x1024px, transparent or solid background
+- Vector-style rendering for scalability
+- Clear silhouette recognizable at any size
+
+Style: Medical/scientific apps aesthetic, nature photography meets technology
+
+==========================================
+ВАРИАНТ 3: Игривый дружелюбный стиль
+==========================================
+
+Create a friendly, approachable app icon for plant care application.
+
+Elements:
+- Cute stylized plant leaf with simple face (optional: two dots for eyes, small smile)
+- Camera icon integrated into leaf stem or corner
+- Subtle sparkles or stars around leaf
+- Health/medical cross symbol (optional, subtle)
+
+Colors:
+- Bright cheerful green (#66BB6A)
+- Yellow-green accents (#AED581)
+- White highlights
+- Soft rounded shapes
+
+Mood:
+- Friendly, welcoming, helpful
+- Accessible to non-experts
+- Fun but not childish
+- Warm and nurturing feel
+
+Style: Duolingo-like friendly mascot aesthetic, rounded cartoon style
+
+==========================================
+ВАРИАНТ 4 (РЕКОМЕНДУЕМЫЙ): AI Tech Modern
+==========================================
+
+Generate a sleek app icon for AI-powered plant analysis mobile app.
+
+Key visual:
+- Single elegant leaf silhouette (simple 5-7 point leaf shape)
+- Camera aperture/lens overlay blended with leaf
+- Scanning laser lines crossing the leaf horizontally
+- Small AI circuit/chip symbol in corner or integrated into stem
+
+Color palette:
+- Primary: Vibrant emerald green (#00C853)
+- Secondary: Tech blue accents (#03DAC6)
+- Background: Dark green gradient (#1B5E20 to #2E7D32)
+- Highlights: White or cyan for tech elements
+
+Design style:
+- Modern gradient mesh effect
+- Glassmorphism or neumorphism touches
+- Clean geometric shapes
+- Tech-forward but natural
+- Apple iOS 17 / Android Material You aesthetic
+
+Layout:
+- Centered composition
+- Rounded square with subtle inner shadow
+- 1024x1024px final resolution
+- Works beautifully at all sizes from 29x29 to 1024x1024
+
+Mood: Cutting-edge, trustworthy, professional, innovative
+
+==========================================
+ПРОМПТ НА РУССКОМ (для русскоязычных генераторов)
+==========================================
+
+Создай современную иконку мобильного приложения для сканирования и анализа растений с помощью ИИ.
+
+Элементы композиции:
+- В центре: стилизованный зелёный лист (простая форма из 5-7 сегментов)
+- Поверх листа: рамка камеры или сканирующие линии
+- Тонкие элементы искусственного интеллекта: микросхема или нейросеть на фоне
+- Акцент на технологичность и природу
+
+Цвета:
+- Основной: яркий изумрудно-зелёный (#00C853)
+- Дополнительный: голубой технологичный (#03DAC6)
+- Фон: градиент от тёмно-зелёного к средне-зелёному
+- Подсветка: белый или циановый для tech элементов
+
+Стиль:
+- Современный Material Design 3
+- Плоский дизайн с мягкими тенями
+- Округлый квадрат 1024x1024px
+- Чёткий силуэт, хорошо читается в малых размерах
+- Профессиональный, технологичный, но дружелюбный
+
+Настроение: инновационный, надёжный, экспертный, современный
+
+==========================================
+КРАТКИЙ ПРОМПТ (для быстрой генерации)
+==========================================
+
+Modern app icon, green leaf with camera scan overlay, AI circuit pattern, 
+emerald green and cyan colors, Material Design style, rounded square, 
+1024x1024px, minimalist tech aesthetic, professional
+
+Negative prompt:
+text, letters, words, numbers, watermark, blurry, low quality, 
+realistic photo, too detailed, cluttered, people, animals
+
+==========================================
+НАСТРОЙКИ ДЛЯ ГЕНЕРАТОРОВ
+==========================================
+
+Stable Diffusion:
+- Model: SDXL or SD 1.5
+- Steps: 30-50
+- CFG Scale: 7-9
+- Sampler: DPM++ 2M Karras or Euler a
+- Size: 1024x1024
+
+DALL-E 3:
+- Quality: HD
+- Style: Natural or Vivid
+- Size: 1024x1024
+
+Midjourney:
+- Version: --v 6
+- Style: --style raw or default
+- Aspect ratio: --ar 1:1
+- Quality: --q 2
+
+==========================================
+ПОСТ-ОБРАБОТКА
+==========================================
+
+После генерации:
+1. Обрежьте до точного квадрата 1024x1024px
+2. Убедитесь, что все элементы видны с отступами от краёв
+3. Экспортируйте в PNG с прозрачностью (если нужно)
+4. Создайте версии для разных размеров:
+   - 512x512px (для Google Play)
+   - 192x192px (для адаптивных иконок)
+   - 48x48px (проверьте читаемость)
+
+==========================================
+ГДЕ ИСПОЛЬЗОВАТЬ
+==========================================
+
+После создания иконки:
+1. Конвертируйте в нужные форматы через Android Asset Studio:
+   https://romannurik.github.io/AndroidAssetStudio/
+
+2. Замените файлы в проекте:
+   app/src/main/res/mipmap-*/ic_launcher.png
+   app/src/main/res/mipmap-*/ic_launcher_round.png
+
+3. Обновите векторную версию:
+   app/src/main/res/drawable/ic_launcher_foreground.xml
+
+==========================================
